@@ -7,6 +7,7 @@ import StackNavigator from './navigation/StackNavigator';
 const App = () => {
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar hidden />
       <NavigationContainer>
         <StackNavigator />
       </NavigationContainer>
