@@ -14,7 +14,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-LightMeAppRN-LightMeAppRNTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-LightMeAppRN-LightMeAppRNTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		8212F26F9ADB4C8FA0966F6F /* RobotoCondensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE7390681E674CC7A7773043 /* RobotoCondensed.ttf */; };
+		C881B59AD10A4736BD380634 /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2216810F09AC48B49D287BC4 /* RobotoCondensed-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +38,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = LightMeAppRN/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = LightMeAppRN/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-LightMeAppRN-LightMeAppRNTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LightMeAppRN-LightMeAppRNTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2216810F09AC48B49D287BC4 /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoCondensed-Regular.ttf"; path = "../assets/fonts/RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-LightMeAppRN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightMeAppRN.debug.xcconfig"; path = "Target Support Files/Pods-LightMeAppRN/Pods-LightMeAppRN.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-LightMeAppRN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightMeAppRN.release.xcconfig"; path = "Target Support Files/Pods-LightMeAppRN/Pods-LightMeAppRN.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-LightMeAppRN-LightMeAppRNTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightMeAppRN-LightMeAppRNTests.debug.xcconfig"; path = "Target Support Files/Pods-LightMeAppRN-LightMeAppRNTests/Pods-LightMeAppRN-LightMeAppRNTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -45,7 +46,6 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = LightMeAppRN/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-LightMeAppRN-LightMeAppRNTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightMeAppRN-LightMeAppRNTests.release.xcconfig"; path = "Target Support Files/Pods-LightMeAppRN-LightMeAppRNTests/Pods-LightMeAppRN-LightMeAppRNTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		EE7390681E674CC7A7773043 /* RobotoCondensed.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = RobotoCondensed.ttf; path = ../assets/fonts/RobotoCondensed.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +111,7 @@
 		5B28736F5E2C4C5989B0CEB1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EE7390681E674CC7A7773043 /* RobotoCondensed.ttf */,
+				2216810F09AC48B49D287BC4 /* RobotoCondensed-Regular.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -256,7 +256,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				8212F26F9ADB4C8FA0966F6F /* RobotoCondensed.ttf in Resources */,
+				C881B59AD10A4736BD380634 /* RobotoCondensed-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
