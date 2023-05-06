@@ -1,5 +1,5 @@
 export const types = {
   temp: 'temp',
-  lcd: 'lcd',
+  led: 'led',
   text: 'text',
 };

@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import CustomModal from '../components/CustomModal';
 import BottomPanel from '../components/Panels/BottomPanel';
 import MiddlePanel from '../components/Panels/MiddlePanel';
@@ -9,25 +15,34 @@ import {colors} from '../constants/colors';
 
 const HomeScreen = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isSwitchEnabled, setIsSwitchEnabled] = useState(false);
 
-  const {container, roundButton, roundButtonText} = styles;
+  const {container, roundButton, roundButtonText, scrollViewStyle} = styles;
   return (
     <View style={container}>
       <ScreenHeader />
-      {/* Round button */}
 
-      <TouchableOpacity
-        onPress={() => setIsModalVisible(true)}
-        style={roundButton}>
-        <Text style={roundButtonText}>+</Text>
-      </TouchableOpacity>
+      <ScrollView
+        bounces={false}
+        showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior={true}
+        contentContainerStyle={scrollViewStyle}>
+        <TouchableOpacity
+          onPress={() => setIsModalVisible(true)}
+          style={roundButton}>
+          <Text style={roundButtonText}>+</Text>
+        </TouchableOpacity>
 
-      <TopPanel />
+        <TopPanel isTopicOnline={false} />
 
-      <MiddlePanel />
+        <MiddlePanel
+          isSwitchEnabled={isSwitchEnabled}
+          setIsSwitchEnabled={setIsSwitchEnabled}
+          isTopicOnline={false}
+        />
 
-      <BottomPanel />
-
+        <BottomPanel isTopicOnline={false} />
+      </ScrollView>
       <CustomModal
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
@@ -42,7 +57,6 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
     backgroundColor: colors.light_grey,
   },
   roundButton: {
@@ -56,4 +70,9 @@ const styles = StyleSheet.create({
     marginTop: -40,
   },
   roundButtonText: {fontSize: 36, color: colors.white, fontWeight: '600'},
+  scrollViewStyle: {
+    flexGrow: 1,
+    paddingTop: 170,
+    paddingBottom: 16,
+  },
 });

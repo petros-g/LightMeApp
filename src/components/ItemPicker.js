@@ -4,10 +4,9 @@ import {colors} from '../constants/colors';
 import {types} from '../constants/types';
 
 const ItemPicker = ({title, isSelected, setIsSelected = () => {}}) => {
-  const topics = [types.temp, types.lcd, types.text];
+  const topics = [types.temp, types.led, types.text];
 
   const {container, radioButtonStyle, textStyle, contentContainer} = styles;
-
   return (
     <View style={container}>
       {topics.map((item, i) => (

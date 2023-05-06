@@ -3,30 +3,43 @@ import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {colors} from '../../constants/colors';
 import CustomDot from '../CustomDot';
 
-const TopPanel = () => {
+const TopPanel = ({
+  children,
+  width,
+  temp = '32',
+  humidity = '23',
+  isTopicOnline = false,
+}) => {
   const {textStyle, iconStyle, imageBackgroundStyle, contentImageStyle} =
     styles;
   return (
     <ImageBackground
-      style={imageBackgroundStyle}
+      style={imageBackgroundStyle(width)}
+      resizeMode="stretch"
       source={require('../../../assets/images/panel.png')}>
-      <View>
-        <View style={contentImageStyle}>
-          <Image
-            source={require('../../../assets/images/icon_droplet.png')}
-            style={iconStyle}
-          />
-          <Text style={textStyle}>32%</Text>
-        </View>
-        <View style={contentImageStyle}>
-          <Image
-            source={require('../../../assets/images/icon_temperature.png')}
-            style={iconStyle}
-          />
-          <Text style={textStyle}>23°C</Text>
-        </View>
-      </View>
-      <CustomDot />
+      {children ? (
+        children
+      ) : (
+        <>
+          <View>
+            <View style={contentImageStyle}>
+              <Image
+                source={require('../../../assets/images/icon_droplet.png')}
+                style={iconStyle}
+              />
+              <Text style={textStyle}>{temp}%</Text>
+            </View>
+            <View style={contentImageStyle}>
+              <Image
+                source={require('../../../assets/images/icon_temperature.png')}
+                style={iconStyle}
+              />
+              <Text style={textStyle}>{humidity}°C</Text>
+            </View>
+          </View>
+          <CustomDot isOnline={isTopicOnline} />
+        </>
+      )}
     </ImageBackground>
   );
 };
@@ -34,14 +47,14 @@ const TopPanel = () => {
 export default TopPanel;
 
 const styles = StyleSheet.create({
-  imageBackgroundStyle: {
+  imageBackgroundStyle: (width = 260) => ({
     flexDirection: 'row',
     alignItems: 'center',
-    width: 260,
+    width: width,
     height: 160,
     justifyContent: 'space-around',
     marginBottom: 20,
-  },
+  }),
   iconStyle: {
     width: 50,
     height: 50,

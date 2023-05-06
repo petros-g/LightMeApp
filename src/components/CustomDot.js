@@ -9,8 +9,8 @@ export default CustomDot;
 
 const styles = StyleSheet.create({
   dot: backgroundColor => ({
-    width: 10,
-    height: 10,
+    width: 8,
+    height: 8,
     backgroundColor: backgroundColor,
     borderRadius: 12,
   }),

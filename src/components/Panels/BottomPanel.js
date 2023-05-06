@@ -9,13 +9,21 @@ import {
   Switch,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import {colors} from '../../constants/colors';
 import CustomDot from '../CustomDot';
 
-const BottomPanel = () => {
-  const {iconStyle, imageBackgroundStyle, contentImageStyle} = styles;
+const BottomPanel = ({isTopicOnline = false}) => {
+  const {
+    iconStyle,
+    imageBackgroundStyle,
+    contentImageStyle,
+    confirmButton,
+    confirmButtonText,
+    textInputStyle,
+  } = styles;
   return (
     <ImageBackground
       resizeMode="stretch"
@@ -28,11 +36,13 @@ const BottomPanel = () => {
             style={iconStyle}
           />
 
-          <Text style={styles.lastPanelText1}>2</Text>
-          <Text style={styles.lastPanelText2}>Send</Text>
+          <TextInput style={textInputStyle} />
+          <TouchableOpacity onPress={{}} style={confirmButton}>
+            <Text style={confirmButtonText}>Send</Text>
+          </TouchableOpacity>
         </View>
       </View>
-      <CustomDot />
+      <CustomDot isOnline={isTopicOnline} />
     </ImageBackground>
   );
 };
@@ -44,37 +54,37 @@ const styles = StyleSheet.create({
     width: 300,
     height: 160,
     alignItems: 'center',
-    justifyContent: 'space-evenly',
     flexDirection: 'row',
   },
   iconStyle: {
     width: 50,
     height: 50,
-    marginRight: 10,
   },
 
   contentImageStyle: {
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 5,
+    paddingHorizontal: 12,
   },
-  lastPanelText1: {
-    borderColor: colors.black,
-    padding: 8,
-    backgroundColor: colors.light_grey,
-    fontSize: 15,
-    margin: 5,
-    textAlign: 'center',
-    width: 40,
-  },
-  lastPanelText2: {
-    borderColor: colors.black,
-    padding: 8,
+  confirmButton: {
+    width: 90,
+    height: 45,
+    color: colors.green,
     backgroundColor: colors.green,
-    fontSize: 15,
-    width: 80,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  confirmButtonText: {
+    fontSize: 22,
     color: colors.white,
-    marginLeft: 5,
-    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  textInputStyle: {
+    width: 70,
+    marginHorizontal: 12,
+    height: 40,
+    borderRadius: 6,
+    backgroundColor: colors.white,
   },
 });

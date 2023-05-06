@@ -10,30 +10,42 @@ import {
 import {colors} from '../../constants/colors';
 import CustomDot from '../CustomDot';
 
-const MiddlePanel = () => {
-  const [isSwitchEnabled, setIsSwitchEnabled] = useState(false);
+const MiddlePanel = ({
+  children,
+  width,
+  isSwitchEnabled,
+  setIsSwitchEnabled = () => {},
+  isTopicOnline = false,
+}) => {
   const {iconStyle, imageBackgroundStyle, contentImageStyle} = styles;
   return (
     <ImageBackground
-      style={imageBackgroundStyle}
+      style={imageBackgroundStyle(width)}
+      resizeMode="stretch"
       source={require('../../../assets/images/panel.png')}>
-      <View>
-        <View style={contentImageStyle}>
-          <Image
-            source={require('../../../assets/images/icon_light.png')}
-            style={iconStyle}
-          />
-          <Switch
-            trackColor={{true: colors.green, false: 'gray'}}
-            thumbColor={colors.white}
-            ios_backgroundColor="gray"
-            onValueChange={setIsSwitchEnabled}
-            value={isSwitchEnabled}
-            style={{marginLeft: 10}}
-          />
-        </View>
-      </View>
-      <CustomDot />
+      {children ? (
+        children
+      ) : (
+        <>
+          <View>
+            <View style={contentImageStyle}>
+              <Image
+                source={require('../../../assets/images/icon_light.png')}
+                style={iconStyle}
+              />
+              <Switch
+                trackColor={{true: colors.green, false: 'gray'}}
+                thumbColor={colors.white}
+                ios_backgroundColor="gray"
+                onValueChange={setIsSwitchEnabled}
+                value={isSwitchEnabled}
+                style={{marginLeft: 10}}
+              />
+            </View>
+          </View>
+          <CustomDot isOnline={isTopicOnline} />
+        </>
+      )}
     </ImageBackground>
   );
 };
@@ -41,16 +53,16 @@ const MiddlePanel = () => {
 export default MiddlePanel;
 
 const styles = StyleSheet.create({
-  imageBackgroundStyle: {
+  imageBackgroundStyle: (width = 260) => ({
     flexDirection: 'row',
-    width: 260,
+    width: width,
     height: 160,
     justifyContent: 'space-evenly',
     alignItems: 'center',
     alignSelf: 'flex-end',
     transform: [{scaleX: -1}],
     marginBottom: 20,
-  },
+  }),
   iconStyle: {
     width: 50,
     height: 50,

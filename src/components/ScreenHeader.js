@@ -33,7 +33,10 @@ export default ScreenHeader;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 180,
+    height: 170,
+    position: 'absolute',
+    top: 0,
+    zIndex: 1,
     justifyContent: 'center',
   },
   content: {
@@ -54,7 +57,6 @@ const styles = StyleSheet.create({
   title: {
     color: colors.white,
     fontSize: 32,
-    fontWeight: 'bold',
     top: 20,
     fontFamily: 'RobotoCondensed-Regular',
   },
