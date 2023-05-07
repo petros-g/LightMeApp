@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
 import {
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
+  Alert,
 } from 'react-native';
 import CustomModal from '../components/CustomModal';
 import BottomPanel from '../components/Panels/BottomPanel';
@@ -12,10 +14,97 @@ import MiddlePanel from '../components/Panels/MiddlePanel';
 import TopPanel from '../components/Panels/TopPanel';
 import ScreenHeader from '../components/ScreenHeader';
 import {colors} from '../constants/colors';
+import useMqttService from '../hooks/useMqttService';
+import {types} from '../constants/types';
+import CustomSnackBar from '../components/CustomSnackBar';
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+  const {
+    disconnect,
+    client,
+    subscribeToTopic,
+    unsubscribeToTopic,
+    publishToTopic,
+    measurements,
+    ledStatus,
+  } = useMqttService();
+
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isSwitchEnabled, setIsSwitchEnabled] = useState(false);
+  const [topicsSelected, setTopicsSelected] = useState({
+    temp: false,
+    led: false,
+    text: false,
+  });
+  const [isTopicOnline, setIsTopicOnline] = useState({
+    temp: false,
+    led: false,
+    text: false,
+  });
+  const [callBackMessage, setCallbackMessage] = useState({
+    type: '',
+    payload: '',
+  });
+
+  useEffect(() => {
+    client.onConnectionLost = () => {
+      navigation.navigate('Login');
+    };
+
+    client.onMessageDelivered = e => {
+      if (e.topic === types.led) return;
+      setCallbackMessage({
+        type: 'success',
+        payload: 'Message delivered!',
+      });
+    };
+    return () => {
+      disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    setIsSwitchEnabled(ledStatus == '1' ? true : false);
+  }, [ledStatus]);
+
+  const subscribeToTopicsHandler = () => {
+    for (let key in topicsSelected) {
+      if (!isTopicOnline[key] && topicsSelected[key]) {
+        subscribeToTopic({
+          topic: key,
+          successCallback: () => {
+            setIsTopicOnline(prev => ({
+              ...prev,
+              [key]: true,
+            }));
+          },
+          errorCallback: () => {},
+        });
+      } else if (isTopicOnline[key] && !topicsSelected[key]) {
+        unsubscribeToTopic({
+          topic: key,
+          successCallback: () => {
+            setIsTopicOnline(prev => ({
+              ...prev,
+              [key]: false,
+            }));
+          },
+          errorCallback: () => {},
+        });
+      }
+    }
+  };
+
+  const switchHandler = e => {
+    if (isTopicOnline.led) {
+      publishToTopic({topic: types.led, message: `${e ? '1' : '0'}`});
+    } else {
+      Alert.alert('Oops!', 'You need to subscribe to the topic "led" first', [
+        {text: 'OK'},
+      ]);
+    }
+  };
 
   const {container, roundButton, roundButtonText, scrollViewStyle} = styles;
   return (
@@ -33,21 +122,31 @@ const HomeScreen = () => {
           <Text style={roundButtonText}>+</Text>
         </TouchableOpacity>
 
-        <TopPanel isTopicOnline={false} />
+        <TopPanel
+          temp={measurements?.temperature}
+          humidity={measurements?.humidity}
+          isTopicOnline={isTopicOnline.temp}
+        />
 
         <MiddlePanel
           isSwitchEnabled={isSwitchEnabled}
-          setIsSwitchEnabled={setIsSwitchEnabled}
-          isTopicOnline={false}
+          setIsSwitchEnabled={switchHandler}
+          isTopicOnline={isTopicOnline.led}
         />
 
-        <BottomPanel isTopicOnline={false} />
+        <BottomPanel
+          publishToTopic={publishToTopic}
+          isTopicOnline={isTopicOnline.text}
+        />
       </ScrollView>
       <CustomModal
+        topicsSelected={topicsSelected}
+        setTopicsSelected={setTopicsSelected}
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
-        onPress={() => {}}
+        modalAction={subscribeToTopicsHandler}
       />
+      <CustomSnackBar callBackMessage={callBackMessage} />
     </View>
   );
 };

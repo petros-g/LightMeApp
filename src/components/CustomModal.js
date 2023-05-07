@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   Modal,
   StyleSheet,
@@ -10,13 +10,13 @@ import {
 import {colors} from '../constants/colors';
 import ItemPicker from './ItemPicker';
 
-const CustomModal = ({isModalVisible, setIsModalVisible}) => {
-  const [topicsSelected, setTopicsSelected] = useState({
-    temp: false,
-    led: false,
-    text: false,
-  });
-
+const CustomModal = ({
+  isModalVisible,
+  setIsModalVisible,
+  topicsSelected,
+  setTopicsSelected,
+  modalAction = () => {},
+}) => {
   const {headerTitle, confirmButton, confirmButtonText, backDropStyle} = styles;
   return (
     <Modal
@@ -28,13 +28,16 @@ const CustomModal = ({isModalVisible, setIsModalVisible}) => {
       }}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={headerTitle}>Select topics to enable:</Text>
+          <Text style={headerTitle}>Select topics to subscribe:</Text>
           <ItemPicker
             setIsSelected={setTopicsSelected}
             isSelected={topicsSelected}
           />
           <TouchableOpacity
-            onPress={() => setIsModalVisible(true)}
+            onPress={() => {
+              setIsModalVisible(false);
+              modalAction();
+            }}
             style={confirmButton}>
             <Text style={confirmButtonText}>OK</Text>
           </TouchableOpacity>

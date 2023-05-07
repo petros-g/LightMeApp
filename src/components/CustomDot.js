@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, View} from 'react-native';
 
 const CustomDot = ({isOnline = false}) => {
   return <View style={styles.dot(isOnline ? 'green' : 'red')} />;

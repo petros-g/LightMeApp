@@ -1,12 +1,5 @@
-import React, {useState} from 'react';
-import {
-  Image,
-  ImageBackground,
-  StyleSheet,
-  Switch,
-  Text,
-  View,
-} from 'react-native';
+import React from 'react';
+import {Image, ImageBackground, StyleSheet, Switch, View} from 'react-native';
 import {colors} from '../../constants/colors';
 import CustomDot from '../CustomDot';
 

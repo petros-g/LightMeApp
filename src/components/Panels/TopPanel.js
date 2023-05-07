@@ -6,8 +6,8 @@ import CustomDot from '../CustomDot';
 const TopPanel = ({
   children,
   width,
-  temp = '32',
-  humidity = '23',
+  temp = '-- ',
+  humidity = '-- ',
   isTopicOnline = false,
 }) => {
   const {textStyle, iconStyle, imageBackgroundStyle, contentImageStyle} =

@@ -1,21 +1,24 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   Image,
   ImageBackground,
-  Keyboard,
-  KeyboardAvoidingView,
-  ScrollView,
   StyleSheet,
-  Switch,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 import {colors} from '../../constants/colors';
+import {types} from '../../constants/types';
 import CustomDot from '../CustomDot';
 
-const BottomPanel = ({isTopicOnline = false}) => {
+const BottomPanel = ({isTopicOnline = false, publishToTopic}) => {
+  const [inputValue, setInputValue] = useState('');
+
+  const onPressHandler = () => {
+    publishToTopic({topic: types.text, message: inputValue});
+  };
+
   const {
     iconStyle,
     imageBackgroundStyle,
@@ -36,8 +39,12 @@ const BottomPanel = ({isTopicOnline = false}) => {
             style={iconStyle}
           />
 
-          <TextInput style={textInputStyle} />
-          <TouchableOpacity onPress={{}} style={confirmButton}>
+          <TextInput
+            value={inputValue}
+            onChangeText={setInputValue}
+            style={textInputStyle}
+          />
+          <TouchableOpacity onPress={onPressHandler} style={confirmButton}>
             <Text style={confirmButtonText}>Send</Text>
           </TouchableOpacity>
         </View>
@@ -67,7 +74,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   confirmButton: {
-    width: 90,
+    width: 80,
     height: 45,
     color: colors.green,
     backgroundColor: colors.green,
@@ -81,7 +88,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   textInputStyle: {
-    width: 70,
+    width: 80,
     marginHorizontal: 12,
     height: 40,
     borderRadius: 6,
