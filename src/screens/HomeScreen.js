@@ -114,7 +114,7 @@ const HomeScreen = () => {
       <ScrollView
         bounces={false}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior={true}
+        automaticallyAdjustKeyboardInsets={true}
         contentContainerStyle={scrollViewStyle}>
         <TouchableOpacity
           onPress={() => setIsModalVisible(true)}

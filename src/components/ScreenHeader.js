@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     height: 170,
     position: 'absolute',
     top: 0,
-    zIndex: -1,
+    zIndex: 1,
     justifyContent: 'center',
     overflow: 'hidden',
   },

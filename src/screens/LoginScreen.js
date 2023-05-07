@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
   ActivityIndicator,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 import CustomInput from '../components/CustomInput';
@@ -77,7 +78,6 @@ const LoginScreen = () => {
       <ScrollView
         bounces={false}
         showsVerticalScrollIndicator={false}
-        contentInsetAdjustmentBehavior={true}
         contentContainerStyle={scrollViewStyle}>
         <TopPanel width={300}>
           <CustomInput inputValue={username} setInputValue={setUsername} />
