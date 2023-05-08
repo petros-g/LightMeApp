@@ -3,15 +3,13 @@ import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {colors} from '../../constants/colors';
 import CustomDot from '../CustomDot';
 
-const TopPanel = ({
-  children,
-  width,
-  temp = '-- ',
-  humidity = '-- ',
-  isTopicOnline = false,
-}) => {
+const TopPanel = ({children, width, temp, humidity, isTopicOnline = false}) => {
+  const tempValue = temp ? Number(temp)?.toFixed(1) : '-- ';
+  const humidityValue = humidity ? Number(humidity)?.toFixed(0) : '-- ';
+
   const {textStyle, iconStyle, imageBackgroundStyle, contentImageStyle} =
     styles;
+
   return (
     <ImageBackground
       style={imageBackgroundStyle(width)}
@@ -27,14 +25,14 @@ const TopPanel = ({
                 source={require('../../../assets/images/icon_droplet.png')}
                 style={iconStyle}
               />
-              <Text style={textStyle}>{temp}%</Text>
+              <Text style={textStyle}>{humidityValue}%</Text>
             </View>
             <View style={contentImageStyle}>
               <Image
                 source={require('../../../assets/images/icon_temperature.png')}
                 style={iconStyle}
               />
-              <Text style={textStyle}>{humidity}°C</Text>
+              <Text style={textStyle}>{tempValue}°C</Text>
             </View>
           </View>
           <CustomDot isOnline={isTopicOnline} />
