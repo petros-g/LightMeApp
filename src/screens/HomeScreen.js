@@ -33,14 +33,14 @@ const HomeScreen = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isSwitchEnabled, setIsSwitchEnabled] = useState(false);
   const [topicsSelected, setTopicsSelected] = useState({
-    temp: false,
-    led: false,
-    text: false,
+    [types.temp]: false,
+    [types.led]: false,
+    [types.text]: false,
   });
   const [isTopicOnline, setIsTopicOnline] = useState({
-    temp: false,
-    led: false,
-    text: false,
+    [types.temp]: false,
+    [types.led]: false,
+    [types.text]: false,
   });
   const [callBackMessage, setCallbackMessage] = useState({
     type: '',
@@ -97,7 +97,7 @@ const HomeScreen = () => {
   };
 
   const switchHandler = e => {
-    if (isTopicOnline.led) {
+    if (isTopicOnline[types.led]) {
       publishToTopic({topic: types.led, message: `${e ? '1' : '0'}`});
     } else {
       Alert.alert('Oops!', 'You need to subscribe to the topic "led" first', [
@@ -105,7 +105,7 @@ const HomeScreen = () => {
       ]);
     }
   };
-
+  console.log(isTopicOnline);
   const {container, roundButton, roundButtonText, scrollViewStyle} = styles;
   return (
     <View style={container}>
@@ -125,18 +125,18 @@ const HomeScreen = () => {
         <TopPanel
           temp={measurements?.temperature}
           humidity={measurements?.humidity}
-          isTopicOnline={isTopicOnline.temp}
+          isTopicOnline={isTopicOnline[types.temp]}
         />
 
         <MiddlePanel
           isSwitchEnabled={isSwitchEnabled}
           setIsSwitchEnabled={switchHandler}
-          isTopicOnline={isTopicOnline.led}
+          isTopicOnline={isTopicOnline[types.led]}
         />
 
         <BottomPanel
           publishToTopic={publishToTopic}
-          isTopicOnline={isTopicOnline.text}
+          isTopicOnline={isTopicOnline[types.text]}
         />
       </ScrollView>
       <CustomModal

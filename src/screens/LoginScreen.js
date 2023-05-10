@@ -82,6 +82,7 @@ const LoginScreen = () => {
         <TopPanel width={300}>
           <CustomInput inputValue={username} setInputValue={setUsername} />
         </TopPanel>
+
         <MiddlePanel width={300}>
           <CustomInput
             inputValue={password}
