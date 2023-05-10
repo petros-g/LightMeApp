@@ -9,6 +9,7 @@ import {
   View,
   ActivityIndicator,
   KeyboardAvoidingView,
+  Alert,
 } from 'react-native';
 
 import CustomInput from '../components/CustomInput';
@@ -32,6 +33,13 @@ const LoginScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleConnectPress = () => {
+    if (!username || !password) {
+      return Alert.alert(
+        'Oops!',
+        'You need to insert username and password first',
+        [{text: 'OK'}],
+      );
+    }
     setIsLoading(true);
     connectToClient({errorCallback, successCallback, username, password});
   };
