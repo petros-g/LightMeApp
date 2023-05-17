@@ -44,7 +44,6 @@ const useMqttService = () => {
     try {
       client.connect({
         useSSL: true,
-
         userName: username,
         password,
         onSuccess: () => {
@@ -57,13 +56,13 @@ const useMqttService = () => {
     } catch {}
   };
 
-  const subscribeToTopic = async ({
+  const subscribeToTopic = ({
     topic,
     successCallback = () => {},
     errorCallback = () => {},
   }) => {
     try {
-      await client.subscribe(topic, {
+      client.subscribe(topic, {
         onSuccess: e => {
           successCallback();
         },

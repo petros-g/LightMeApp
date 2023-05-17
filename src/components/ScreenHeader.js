@@ -33,7 +33,7 @@ export default ScreenHeader;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 170,
+    height: 150,
     position: 'absolute',
     top: 0,
     zIndex: 1,

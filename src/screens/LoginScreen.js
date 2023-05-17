@@ -1,15 +1,14 @@
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {
+  ActivityIndicator,
+  Alert,
   ImageBackground,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  ActivityIndicator,
-  KeyboardAvoidingView,
-  Alert,
 } from 'react-native';
 
 import CustomInput from '../components/CustomInput';
@@ -90,7 +89,6 @@ const LoginScreen = () => {
         <TopPanel width={300}>
           <CustomInput inputValue={username} setInputValue={setUsername} />
         </TopPanel>
-
         <MiddlePanel width={300}>
           <CustomInput
             inputValue={password}
@@ -100,7 +98,6 @@ const LoginScreen = () => {
             isReversed
           />
         </MiddlePanel>
-
         <TouchableOpacity
           disabled={isLoading}
           onPress={handleConnectPress}

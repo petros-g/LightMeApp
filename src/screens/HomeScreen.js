@@ -105,7 +105,7 @@ const HomeScreen = () => {
       ]);
     }
   };
-  console.log(isTopicOnline);
+
   const {container, roundButton, roundButtonText, scrollViewStyle} = styles;
   return (
     <View style={container}>
