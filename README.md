@@ -1,5 +1,10 @@
 # 🌟 Light Me App Workshop Project
 
+<img width="800" alt="image" src="https://github.com/petros-g/LightMeApp/assets/96618818/682eb9f6-48c2-47d1-b418-db930eada4ef">
+
+
+## Overview
+
 Welcome to the Light Me App workshop project! This project, developed in React Native, combines the power of IoT with the convenience of mobile applications. With the integration of an Arduino board, our app can send and receive information about the status of LED bulbs and room temperature in real-time.
 
 ### 🚀 Features:
