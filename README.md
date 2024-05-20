@@ -1,6 +1,7 @@
 # 🌟 Light Me App Workshop Project
 
-<img width="800" alt="image" src="https://github.com/petros-g/LightMeApp/assets/96618818/682eb9f6-48c2-47d1-b418-db930eada4ef">
+<img width="800" alt="image" src="https://github.com/petros-g/LightMeApp/assets/96618818/f09e067f-1457-4e5d-a654-d82d0881b224">
+
 
 
 ## Overview
